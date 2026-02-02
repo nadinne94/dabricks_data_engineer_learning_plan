@@ -1,0 +1,5 @@
+-- Databricks notebook source
+-- MAGIC %md
+-- MAGIC [What is Lakeflow Connect?](https://docs.databricks.com/gcp/en/ingestion/overview)
+-- MAGIC
+-- MAGIC - [Managed connectors](https://docs.databricks.com/gcp/en/ingestion/lakeflow-connect/)
