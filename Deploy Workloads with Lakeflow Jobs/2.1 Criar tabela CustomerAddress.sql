@@ -1,0 +1,24 @@
+-- Databricks notebook source
+-- DBTITLE 1,Armazenar caminho em variaveis
+-- MAGIC %python
+-- MAGIC my_catalog = dbutils.widgets.get('catalog')
+-- MAGIC my_schema = dbutils.widgets.get('schema')
+-- MAGIC
+-- MAGIC my_volume_path = f"/Volumes/{my_catalog}/{my_schema}/trigger_storage_location/"
+-- MAGIC
+-- MAGIC print(my_catalog)
+-- MAGIC print(my_schema)
+-- MAGIC print(my_volume_path)
+
+-- COMMAND ----------
+
+-- DBTITLE 1,Ler arquivo csv e gravar tabela na camada bronze
+-- MAGIC %python
+-- MAGIC sales_order_df = (spark
+-- MAGIC                   .read
+-- MAGIC                   .format("csv")
+-- MAGIC                   .option("header", "true")
+-- MAGIC                   .option("sep", ";")
+-- MAGIC                   .load(my_volume_path)
+-- MAGIC                 )
+-- MAGIC sales_order_df.write.mode('overwrite').saveAsTable(f'{my_catalog}.{my_schema}.customer_address_bronze')
